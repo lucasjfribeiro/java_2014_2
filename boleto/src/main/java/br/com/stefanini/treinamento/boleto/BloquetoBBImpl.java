@@ -53,7 +53,11 @@ public abstract class BloquetoBBImpl implements BloquetoBB {
 	 */
 	protected String getValorFormatado() {
 
+	 
 		// TODO: Explicar o que este método está fazendo
+		 /* Transforma o valor em decimal e conversao em digitos 0
+		   */
+		
 		return String.format(
 				"%010d",
 				Long.valueOf(valor.setScale(2, RoundingMode.HALF_UP).toString()
@@ -177,7 +181,10 @@ public abstract class BloquetoBBImpl implements BloquetoBB {
 	protected static long diferencaEmDias(Date dataInicial, Date dataFinal) {
 
 		// TODO: Estude a Math e escreva aqui o que este método está fazendo
-
+		/* 
+		 Faz o calculo dos dias vencidos a base da data inicial com a data final da fatura e converte em milisegundos
+		 Descobrir quantos dias estao vencidos 86400000D = 1 dia
+		 */
 		return Math
 				.round((dataFinal.getTime() - dataInicial.getTime()) / 86400000D);
 	}

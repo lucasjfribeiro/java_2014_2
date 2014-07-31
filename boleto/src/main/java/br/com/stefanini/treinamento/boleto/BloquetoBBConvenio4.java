@@ -76,6 +76,15 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 			String numeroAgenciaRelacionamento,
 			String contaCorrenteRelacionamentoSemDV, String tipoCarteira)
 			throws ManagerException {
+		
+		this.codigoBanco = codigoBanco;
+		this.codigoMoeda = codigoMoeda;
+		this.dataVencimento = dataVencimento;
+		this.valor = valor;
+		this.numeroConvenioBanco = numeroConvenioBanco;
+		this.complementoNumeroConvenioBancoSemDV = complementoNumeroConvenioBancoSemDV;
+		this.tipoCarteira = tipoCarteira;
+		this.dataBase = dataBase;
 
 		//TODO: INICIALIZAR DADOS
 
@@ -101,7 +110,13 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append(codigoBanco);
 		buffer.append(codigoMoeda);
-	    
+		buffer.append(fatorVencimento);
+		buffer.append(getValorFormatado());
+		buffer.append(numeroConvenioBanco);
+		buffer.append(complementoNumeroConvenioBancoSemDV);
+		buffer.append(numeroAgenciaRelacionamento);
+		buffer.append(contaCorrenteRelacionamentoSemDV);
+		buffer.append(tipoCarteira);
 		//TODO: COMPLETAR
 		
 		
@@ -115,7 +130,18 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 		init();
 
 		StringBuilder buffer = new StringBuilder();
+		buffer.append (codigoBanco); //Campo 01-03 (03)
+		buffer.append (codigoMoeda); // Campo 04-04 (01) 
+		buffer.append (digitoVerificadorCodigoBarras(getCodigoBarrasSemDigito())); //Campo 01-03 (03)
 		
+		buffer.append(fatorVencimento); //Campo 06-09 (04)
+		buffer.append(getValorFormatado()); // Campo 10-19 (10)
+		buffer.append(numeroConvenioBanco); //Campo 20-23 (04)
+		
+		buffer.append(complementoNumeroConvenioBancoSemDV)); // Campo
+		buffer.append(numeroAgenciaRelacionamento); //Campo 31-34 (04)
+		buffer.append(contaCorrenteRelacionamentoSemDV); //Campo 35-42 (08)
+		buffer.append(tipoCarteira); //Campo 43-44 (02)
 		//TODO: COMPLETAR
 		
 
