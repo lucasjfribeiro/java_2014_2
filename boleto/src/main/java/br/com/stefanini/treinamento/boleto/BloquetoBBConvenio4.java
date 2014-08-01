@@ -83,10 +83,12 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 		this.valor = valor;
 		this.numeroConvenioBanco = numeroConvenioBanco;
 		this.complementoNumeroConvenioBancoSemDV = complementoNumeroConvenioBancoSemDV;
+		this.numeroAgenciaRelacionamento = numeroAgenciaRelacionamento;
+		this.contaCorrenteRelacionamentoSemDV = contaCorrenteRelacionamentoSemDV;
 		this.tipoCarteira = tipoCarteira;
 		this.dataBase = dataBase;
 
-		//TODO: INICIALIZAR DADOS
+		
 
 		validaDados();
 
@@ -94,8 +96,8 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 
 	@Override
 	protected String getLDNumeroConvenio() {
-
-		return "";
+    String convenio = String.format("%04d", Long.valueOf(numeroConvenioBanco));
+		return String.format("%s.$", convenio.substring(0, 1), convenio.substring(1, 5));
 
 	}
 
@@ -117,8 +119,6 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 		buffer.append(numeroAgenciaRelacionamento);
 		buffer.append(contaCorrenteRelacionamentoSemDV);
 		buffer.append(tipoCarteira);
-		//TODO: COMPLETAR
-		
 		
 		
 		return buffer.toString();
@@ -138,13 +138,13 @@ public class BloquetoBBConvenio4 extends BloquetoBBImpl implements BloquetoBB {
 		buffer.append(getValorFormatado()); // Campo 10-19 (10)
 		buffer.append(numeroConvenioBanco); //Campo 20-23 (04)
 		
-		buffer.append(complementoNumeroConvenioBancoSemDV)); // Campo
+		buffer.append(complementoNumeroConvenioBancoSemDV); // Campo 24-30 (07)
 		buffer.append(numeroAgenciaRelacionamento); //Campo 31-34 (04)
 		buffer.append(contaCorrenteRelacionamentoSemDV); //Campo 35-42 (08)
 		buffer.append(tipoCarteira); //Campo 43-44 (02)
-		//TODO: COMPLETAR
 		
-
+		
+	
 		return buffer.toString();
 	}
 
